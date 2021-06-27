@@ -41,9 +41,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    # 'likes.apps.LikesConfig',
+    # 'tweets.apps.TweetsConfig',
+
     # my apps
     'account',
     'main',
+    # 'likes',
+    # 'tweets',
 ]
 
 MIDDLEWARE = [

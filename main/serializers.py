@@ -9,17 +9,17 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    created_at = serializers.DateTimeField(format='%d/%m/%Y %H:%M:%S', read_only=True)
+    created_at = serializers.DateTimeField(format='%d/%m/%Y', read_only=True)
     class Meta:
         model = Post
-        fields = ('id', 'marka_model', 'category', 'created_at', 'text')
+        fields = ('id', 'marka_model', 'category', 'created_at', 'text', 'year', 'price')
 
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         representation['author'] = instance.author.email
         # если в категории  цифры то мы пишем это
-        representation['category'] = CategorySerializer(instance.category).data
+        # representation['category'] = CategorySerializer(instance.category).data
         representation['images'] = PostImageSerializer(instance.images.all(), many=True, context=self.context).data
         return representation
 
